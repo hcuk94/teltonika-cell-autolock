@@ -22,7 +22,8 @@ if current_pcid == desired_pcid and current_earcfn == desired_earcfn:
           .format(current_earcfn, current_pcid, desired_earcfn, desired_pcid))
 else:
     # earcfn/pcid does not match, so lets run the sequence to lock cell
-    print("Current EARCFN/PCID values of {}/{} do not match desired values of {}/{}. Cell lock sequence will be run...")
+    print("Current EARCFN/PCID values of {}/{} do not match desired values of {}/{}. Cell lock sequence will be run..."
+          .format(current_earcfn, current_pcid, desired_earcfn, desired_pcid))
     mode_override_cmd = "gsmctl -A 'AT+QCFG=\"NWSCANMODE\",3,1'"
     print(mode_override_cmd)
     #mode_override_cmd_run = os.popen(mode_override_cmd)
