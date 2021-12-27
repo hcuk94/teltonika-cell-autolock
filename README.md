@@ -6,7 +6,7 @@ Please read the important information on this readme before using this script in
 
 ### Important
 This script was created for my own personal Teltonika device.
-It is designed specifically for the RUT360 model and is untested on other models. Indeed, it should be considered altogether untested, and for use at your own risk.
+It is designed specifically for the RUT360 model and is untested on other Teltonika models, or OpenWRT-based devices. Indeed, it should be considered altogether untested, and for use at your own risk.
 
 I know for a fact that other models use different commands so please do your research before using this!
 
