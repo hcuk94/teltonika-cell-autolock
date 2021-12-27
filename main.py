@@ -25,14 +25,12 @@ else:
     print("Current EARCFN/PCID values of {}/{} do not match desired values of {}/{}. Cell lock sequence will be run..."
           .format(current_earcfn, current_pcid, desired_earcfn, desired_pcid))
     mode_override_cmd = "gsmctl -A 'AT+QCFG=\"NWSCANMODE\",3,1'"
-    print(mode_override_cmd)
-    #mode_override_cmd_run = os.popen(mode_override_cmd)
-    #print("Mode Override: " + mode_override_cmd_run.read())
+    mode_override_cmd_run = os.popen(mode_override_cmd)
+    print("Mode Override: " + mode_override_cmd_run.read())
     sleep(1)
     cell_lock_cmd = "gsmctl -A 'AT+QNWLOCK=\"common/lte\",2,{},{}'".format(desired_earcfn, desired_pcid)
-    print(cell_lock_cmd)
-    #cell_lock_cmd_run = os.popen(cell_lock_cmd)
-    #print("Cell Lock: " + cell_lock_cmd_run.read())
+    cell_lock_cmd_run = os.popen(cell_lock_cmd)
+    print("Cell Lock: " + cell_lock_cmd_run.read())
     print("Cell lock sequence complete.")
 
 
