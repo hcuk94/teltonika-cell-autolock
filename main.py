@@ -19,17 +19,19 @@ desired_pcid = config.cell_pcid
 if current_pcid == desired_pcid and current_earcfn == desired_earcfn:
     # earcfn/pcid matches, log this and take no further action
     print("Current EARCFN/PCID values of {}/{} match desired values of {}/{}. No further action will be taken."
-                 .format(current_earcfn, current_pcid, desired_earcfn, desired_pcid))
+          .format(current_earcfn, current_pcid, desired_earcfn, desired_pcid))
 else:
     # earcfn/pcid does not match, so lets run the sequence to lock cell
     print("Current EARCFN/PCID values of {}/{} do not match desired values of {}/{}. Cell lock sequence will be run...")
     mode_override_cmd = "gsmctl -A 'AT+QCFG=\"NWSCANMODE\",3,1'"
-    mode_override_cmd_run = os.popen(mode_override_cmd)
-    print("Mode Override: " + mode_override_cmd_run.read())
+    print(mode_override_cmd)
+    #mode_override_cmd_run = os.popen(mode_override_cmd)
+    #print("Mode Override: " + mode_override_cmd_run.read())
     sleep(1)
     cell_lock_cmd = "gsmctl -A 'AT+QNWLOCK=\"common/lte\",2,{},{}'".format(desired_earcfn, desired_pcid)
-    cell_lock_cmd_run = os.popen(cell_lock_cmd)
-    print("Cell Lock: " + cell_lock_cmd_run.read())
+    print(cell_lock_cmd)
+    #cell_lock_cmd_run = os.popen(cell_lock_cmd)
+    #print("Cell Lock: " + cell_lock_cmd_run.read())
     print("Cell lock sequence complete.")
 
 
