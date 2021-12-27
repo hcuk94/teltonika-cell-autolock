@@ -8,8 +8,8 @@ current_cell_data_string = current_cell_cmd.read()
 
 # Put cell info string into a list
 current_cell_data_list = current_cell_data_string.split(",")
-current_earcfn = current_cell_data_list[8]
-current_pcid = current_cell_data_list[7]
+current_earcfn = int(current_cell_data_list[8])
+current_pcid = int(current_cell_data_list[7])
 
 # Get desired cell info
 desired_earcfn = config.cell_earcfn
