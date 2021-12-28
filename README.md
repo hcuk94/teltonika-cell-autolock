@@ -19,6 +19,8 @@ Firstly you will need to SSH to your Teltonika device, and install Python:
 
 `opkg install python-light`
 
+`opkg install python-logging`
+
 I then created a directory for the script, and downloaded the raw files from github:
 ````
 mkdir teltonika-cell-autolock
