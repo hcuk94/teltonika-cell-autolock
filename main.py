@@ -24,8 +24,8 @@ logging.debug("Current PCID: " + str(current_pcid))
 # Get desired cell info
 desired_earfcn = config.cell_earfcn
 desired_pcid = config.cell_pcid
-logging.debug("Desired EARCFN: " + desired_earfcn)
-logging.debug("Desired PCID: " + desired_pcid)
+logging.debug("Desired EARCFN: " + str(desired_earfcn))
+logging.debug("Desired PCID: " + str(desired_pcid))
 
 # Compare earfcn/pcid
 if current_pcid == desired_pcid and current_earfcn == desired_earfcn:
