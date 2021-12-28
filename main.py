@@ -4,8 +4,8 @@ import logging
 from time import sleep
 
 # Configure logging using config file
- logging.basicConfig(level=config.log_level, filename=config.log_file
-                     , filemode="a+", format="%(asctime)-15s %(levelname)-8s %(message)s")
+logging.basicConfig(level=config.log_level, filename=config.log_file,
+                    filemode="a+", format="%(asctime)-15s %(levelname)-8s %(message)s")
 
 # Get current cell info
 logging.debug("Getting current cell info...")
@@ -31,11 +31,12 @@ logging.debug("Desired PCID: " + desired_pcid)
 if current_pcid == desired_pcid and current_earfcn == desired_earfcn:
     # earfcn/pcid matches, log this and take no further action
     logging.info("Current EARFCN/PCID values of {}/{} match desired values of {}/{}. No further action will be taken."
-          .format(current_earfcn, current_pcid, desired_earfcn, desired_pcid))
+                 .format(current_earfcn, current_pcid, desired_earfcn, desired_pcid))
 else:
     # earfcn/pcid does not match, so lets run the sequence to lock cell
-    logging.info("Current EARFCN/PCID values of {}/{} do not match desired values of {}/{}. Cell lock sequence will be run..."
-          .format(current_earfcn, current_pcid, desired_earfcn, desired_pcid))
+    logging.info("Current EARFCN/PCID values of {}/{} do not match desired values of {}/{}. "
+                 "Cell lock sequence will be run..."
+                 .format(current_earfcn, current_pcid, desired_earfcn, desired_pcid))
     mode_override_cmd = "gsmctl -A 'AT+QCFG=\"NWSCANMODE\",3,1'"
     logging.debug("Running command: " + mode_override_cmd)
     mode_override_cmd_run = os.popen(mode_override_cmd)
