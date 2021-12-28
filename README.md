@@ -41,6 +41,10 @@ Finally, install main.py into your crontab. I went for an hourly schedule:
 
 `0 * * * * /root/teltonika-cell-autolock/main.py`
 
+NB: After adding the cron job using `crontab -e`, the job will not be active until you restart cron:
+
+`/etc/init.d/cron restart`
+
 ### Background
 My parents live in rural Suffolk (UK), where ADSL2+ provides speeds of around 2mbps. Since 2017 I have instead used a 4G connection, which can give them speeds of around 60mbps.
 

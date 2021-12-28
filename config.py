@@ -10,4 +10,4 @@ cell_pcid = 365
 # Additional configurable options are shown below.
 
 log_file = 'main.log'  # File to log to
-log_level = 10  # 0 NOTSET, 10 DEBUG, 20 INFO, 30 WARNING, 40 ERROR, 50 CRITICAL
+log_level = 20  # 0 NOTSET, 10 DEBUG, 20 INFO, 30 WARNING, 40 ERROR, 50 CRITICAL
