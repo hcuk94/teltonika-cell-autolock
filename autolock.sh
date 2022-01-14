@@ -33,7 +33,7 @@ current_pcid=`echo -e "$current_cell_data_list" | sed -n '8p'`
                                                                                                                                                                                                             
 # Check Match                                                                                                                                                                                               
 if [[ $current_earfcn == $DESIRED_EARFCN && $current_pcid == $DESIRED_PCID ]]; then                                       
-    echo logger("Current EARFCN/PCID of $current_earfcn/$current_pcid match desired $DESIRED_EARFCN/$DESIRED_PCID. No action will be taken.")
+    echo logger "Current EARFCN/PCID of $current_earfcn/$current_pcid match desired $DESIRED_EARFCN/$DESIRED_PCID. No action will be taken."
 else                                                                                                                                                                                                     
     echo "$run_dateiCurrent EARFCN/PCID of $current_earfcn/$current_pcid do not match desired $DESIRED_EARFCN/$DESIRED_PCID. Running cell lock sequence..."                      
                                                                                                                                                                                                             
