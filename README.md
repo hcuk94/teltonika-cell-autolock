@@ -6,44 +6,35 @@ Please read the important information on this readme before using this script in
 
 ### Important
 This script was created for my own personal Teltonika device.
-It is designed specifically for the RUT360 model and is untested on other Teltonika models, or OpenWRT-based devices. Indeed, it should be considered altogether untested, and for use at your own risk.
+It is designed specifically for the RUT360 model and is untested on other Teltonika models. Indeed, it should be considered altogether untested, and for use at your own risk.
 
 I know for a fact that other models use different commands so please do your research before using this!
 
-If you are using a RUT360, I still suggest you familiarise yourself with cell locking before using this script. Teltonika have kindly provided some guidance on cell locking here: https://community.teltonika-networks.com/38696/rut360-cell-lock?show=38739#c38739
+If you are using a RUT360, I still suggest you familiarise yourself with cell locking before using this script. I have written about this on my blog [here](https://henrycole.uk/2021/12/28/Locking-the-Teltonika-RUT360-to-a-Specific-Cell.html).
 
 ### Installation
-Firstly you will need to SSH to your Teltonika device, and install Python:
-
-`opkg update`
-
-`opkg install python-light`
-
-`opkg install python-logging`
-
-I then created a directory for the script, and downloaded the raw files from github:
-````
-mkdir teltonika-cell-autolock
-cd teltonika-cell-autolock
-wget https://raw.githubusercontent.com/hcuk94/teltonika-cell-autolock/main/config.py
-wget https://raw.githubusercontent.com/hcuk94/teltonika-cell-autolock/main/main.py
-````
-
-The better option would be to `opkg install git` and clone the repository, but my device did not have sufficient storage space to do so.
-
-Next, it is important to edit the cell_earfcn and cell_pcid values in config.py
-
-If you do not know what these are, then you should first familiarise yourself with cell locking on this device, and work out which cell is best for you.
-The following instructions were kindly provided to me by Teltonika and should help:
-https://community.teltonika-networks.com/38696/rut360-cell-lock?show=38739#c38739
-
-Finally, install main.py into your crontab. I went for an hourly schedule:
-
-`0 * * * * /root/teltonika-cell-autolock/main.py`
-
-NB: After adding the cron job using `crontab -e`, the job will not be active until you restart cron:
-
-`/etc/init.d/cron restart`
+There is no persistent storage on the RUT360, and thus any files you store on the device are likely to be wiped if, for example, you upgrade the firmware.
+I therefore recommend the following approach which should survive most routine maintenance:
+#### 1. Fork this GitHub Repo into your own account
+#### 2. Edit autolock.sh in your forked repo and change the following block to your desired EARFCN & PCID:
+```
+# Configuration - change these values!
+DESIRED_EARFCN=1392
+DESIRED_PCID=365
+```
+If you do not know your EARFCN/PCID values, please see my [blog post](https://henrycole.uk/2021/12/28/Locking-the-Teltonika-RUT360-to-a-Specific-Cell.html) on this.
+#### 3. SSH to your Teltonika device, and use `crontab -e` to install the following:
+```
+0 * * * * wget -q https://raw.githubusercontent.com/hcuk94/teltonika-cell-autolock/main/autolock.sh -O /root/autolock.sh && chmod +x /root/autolock.sh && /root/autolock.sh >> /root/autolock.log 2>&1
+```
+You will need to change 'hcuk94' to your own GitHub username so that your chosen EARFCN/PCID values will be used. 
+When connecting via SSH the username is root rather than admin.
+#### 4. You may need to restart cron for the job to start running:
+```
+/etc/init.d/cron restart
+```
+The job will now run at the stroke of each hour, and you will be able to check its output in /root/autolock.log
+The script will be downloaded from your repo each time, so if you need to change your cell you can update this in your repo.
 
 ### Background
 My parents live in rural Suffolk (UK), where ADSL2+ provides speeds of around 2mbps. Since 2017 I have instead used a 4G connection, which can give them speeds of around 60mbps.
@@ -54,3 +45,7 @@ The mast which is geographically closest has a pretty average uplink (presumably
 Using a Teltonika RUT340 with cell locking, I am able to force the device to use the farther cell, thus significantly improving internet speeds.
 
 Cell locking is not permanent though, so I wrote this script to run on cron and re-set the lock if applicable.
+
+I've written some more about delivering broadband over 4G in these blog posts:
+- [Delivering Rural Broadband over 4G](https://henrycole.uk/2021/12/02/Delivering-Rural-Broadband-over-4G.html)
+- [Locking the Teltonika RUT360 to a Specific Cell ID](https://henrycole.uk/2021/12/28/Locking-the-Teltonika-RUT360-to-a-Specific-Cell.html)
