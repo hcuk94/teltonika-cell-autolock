@@ -7,11 +7,21 @@
 # Configuration - change these values!                                                                                                                                                                      
 DESIRED_EARFCN=1392                                                                                                                                                                                         
 DESIRED_PCID=365                                                                                                                                                                                            
-                                                                                                                                                                                                            
-                                                                                                                                                                                                            
+                    
+##################
+# Logging Function
+##################
+logger(msg) {
+    log_date=$(date +'%F %R')
+    echo "$date - $msg"
+}
+
 ##################                                                                                                                                                                                          
 # Main Program                                                                                                                                                                                              
 ##################                                                                                                                                                                                          
+
+# Set Datetime of App Run
+run_datetime=$(date +'%F %R')
                                                                                                                                                                                                             
 # Get currently connected cell, and extrapolate current earfcn/pcid                                                                                                                                         
 current_cell=`gsmctl -K`                                                                                                                                                                                    
@@ -22,10 +32,10 @@ current_pcid=`echo -e "$current_cell_data_list" | sed -n '8p'`
                                                                                                                                                                                                             
                                                                                                                                                                                                             
 # Check Match                                                                                                                                                                                               
-if [[ $current_earfcn == $DESIRED_EARFCN && $current_pcid == $DESIRED_PCID ]]; then                                                                                                                         
-    echo "Current EARFCN/PCID of $current_earfcn/$current_pcid match desired $DESIRED_EARFCN/$DESIRED_PCID. No action will be taken."                                                                       
-else                                                                                                                                                                                                        
-    echo "Current EARFCN/PCID of $current_earfcn/$current_pcid do not match desired $DESIRED_EARFCN/$DESIRED_PCID. Running cell lock sequence..."                                                           
+if [[ $current_earfcn == $DESIRED_EARFCN && $current_pcid == $DESIRED_PCID ]]; then                                       
+    echo logger("Current EARFCN/PCID of $current_earfcn/$current_pcid match desired $DESIRED_EARFCN/$DESIRED_PCID. No action will be taken.")
+else                                                                                                                                                                                                     
+    echo "$run_dateiCurrent EARFCN/PCID of $current_earfcn/$current_pcid do not match desired $DESIRED_EARFCN/$DESIRED_PCID. Running cell lock sequence..."                      
                                                                                                                                                                                                             
     # Main Cell Locking Sequence                                                                                                                                                                            
     force_scanmode=`gsmctl -A 'AT+QCFG="NWSCANMODE",3,1'`                                                                                                                                                   
