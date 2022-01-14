@@ -11,7 +11,7 @@ DESIRED_PCID=365
 ##################
 # Logging Function
 ##################
-logger(msg) {
+logger($msg) {
     log_date=$(date +'%F %R')
     echo "$date - $msg"
 }
