@@ -36,6 +36,11 @@ When connecting via SSH the username is root rather than admin.
 The job will now run at the stroke of each hour, and you will be able to check its output in /root/autolock.log
 The script will be downloaded from your repo each time, so if you need to change your cell you can update this in your repo.
 
+### Feedback & Support
+The best way to ask a question or leave feedback on this script is to raise an issue in this GitHub Repo.
+You can also contact me directly using the links in my GitHub profile.
+I look forward to hearing from you :-)
+
 ### Background
 My parents live in rural Suffolk (UK), where ADSL2+ provides speeds of around 2mbps. Since 2017 I have instead used a 4G connection, which can give them speeds of around 60mbps.
 
