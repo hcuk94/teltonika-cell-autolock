@@ -37,7 +37,7 @@ else
     # Main Cell Locking Sequence                                                                                                                                                                            
     force_scanmode=`gsmctl -A 'AT+QCFG="NWSCANMODE",3,1'`                                                                                                                                                   
     if [[ $force_scanmode == *"OK"* ]]; then                                                                                                                                                                
-        lock_cell=$(gsmctl -A 'AT+QNWLOCK=\"common/lte\",2,$DESIRED_EARFCN,$DESIRED_PCID')                                                                                                                  
+        lock_cell=$(gsmctl -A 'AT+QNWLOCK="common/lte",2,'$DESIRED_EARFCN','$DESIRED_PCID'')                                                                                                                  
         if [[ $lock_cell == *"OK"* ]]; then                                                                                                                                                                 
             logger "Cell lock completed successfully"                                                                                                                                                         
         else                                                                                                                                                                                                
