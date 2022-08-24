@@ -5,8 +5,8 @@
 ##################                                                                                                                                                                                          
                                                                                                                                                                                                             
 # Configuration - change these values!                                                                                                                                                                      
-DESIRED_EARFCN=1392                                                                                                                                                                                         
-DESIRED_PCID=365                                                                                                                                                                                            
+DESIRED_EARFCN=1392
+DESIRED_PCID=55
                     
 ##################
 # Logging Function
