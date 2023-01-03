@@ -20,8 +20,8 @@ logger() {
 # Main Program                                                                                                                                                                                              
 ##################                                                                                                                                                                                          
 
-# Get currently connected cell, and extrapolate current earfcn/pcid                                                                                                                                         
-current_cell=`gsmctl -K`                                                                                                                                                                                    
+# Get currently connected cell, and determine current earfcn/pcid                                                                                                                                         
+current_cell=`gsmctl -A 'AT+QENG="servingcell"'`                                                                                                                                                                                    
 current_cell_data_list=$(echo $current_cell | tr "," "\n")                                                                                                                                                  
                                                                                                                                                                                                             
 current_earfcn=`echo -e "$current_cell_data_list" | sed -n '9p'`                                                                                                                                            
